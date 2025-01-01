@@ -67,6 +67,11 @@ class DataIngestion:
             # Creating folder
             dir_path = os.path.dirname(feature_store_file_path)
             os.makedirs(dir_path, exist_ok=True)
+            
+            # Removing "_id" column from the dataframe
+            if "_id" in dataframe.columns:
+                dataframe.drop(columns=["_id"], inplace=True)
+            
             # Save datafrome to csv
             dataframe.to_csv(feature_store_file_path, index=False, header=True)
 
