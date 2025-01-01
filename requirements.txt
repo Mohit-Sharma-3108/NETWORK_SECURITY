@@ -6,5 +6,8 @@ pymongo
 pymongo[srv]==3.6
 certifi
 scikit-learn
+dill
+pyaml
+
 
 # -e. this is needed only at the end of the project
