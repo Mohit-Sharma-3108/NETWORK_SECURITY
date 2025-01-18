@@ -35,6 +35,9 @@ from sklearn.model_selection import GridSearchCV, RandomizedSearchCV
 import mlflow
 import mlflow.sklearn
 
+import dagshub
+dagshub.init(repo_owner='mohit1d.lp', repo_name='NETWORK_SECURITY', mlflow=True)
+
 
 class ModelTrainer:
     def __init__(
@@ -65,7 +68,7 @@ class ModelTrainer:
             mlflow.sklearn.log_model(best_model, "model")
 
         
-    def train_model(self, X_train, y_train, X_test, y_test):
+    def train_model(self, X_train, y_train, X_test, y_test) -> ModelTrainerArtifact:
         models = {
             "Random Forest": RandomForestClassifier(verbose=1),
             "Decision Tree": DecisionTreeClassifier(),
@@ -140,6 +143,8 @@ class ModelTrainer:
             file_path=self.model_trainer_config.trained_model_file_path,
             obj=network_model
         )
+
+        save_object("final_models/model.pkl", best_model)
 
         # Model trainer artifact
         model_trainer_artifact = ModelTrainerArtifact(

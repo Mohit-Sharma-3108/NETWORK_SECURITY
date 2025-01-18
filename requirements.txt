@@ -2,12 +2,15 @@ pandas
 python-dotenv
 numpy
 setuptools
-pymongo==4.10.1
+pymongo
 pymongo[srv]==3.6
 certifi
 scikit-learn
 pyaml
 mlflow
-
+dagshub
+fastapi
+uvicorn
+python-multipart
 
 # -e. this is needed only at the end of the project
