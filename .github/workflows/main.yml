@@ -75,6 +75,12 @@ jobs:
               id: login-ecr
               uses: aws-actions/amazon-ecr-login@v1
 
+            - name: Docker login
+              run: |
+                aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | \
+                docker login --username AWS --password-stdin ${{ secrets.AWS_ECR_LOGIN_URI }}
+            
+
             - name: Pull latest images
               run: |
                 docker pull ${{ secrets.AWS_ECR_LOGIN_URI }}/${{secrets.ECR_REPOSITORY_NAME}}:latest
